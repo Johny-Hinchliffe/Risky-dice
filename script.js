@@ -74,13 +74,17 @@ btnHold.addEventListener('click', function () {
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= 10) {
       playing = false;
       dice.classList.add('hidden');
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
-        document.getElementById(`total-score--${activePlayer}`).textContent = totalScores[activePlayer] +=1;
+      document.getElementById(`total-score--${activePlayer}`).textContent =
+        totalScores[activePlayer] += 1;
+      document.querySelector(`.poop--${activePlayer}`).classList.remove('hidden');
+      document.querySelector(`.poop--${activePlayer}`).classList.add('grow');
+      document.querySelector(`.happy--${activePlayer}`).classList.add('grow1');
     } else switchPlayer();
   }
 });
@@ -90,4 +94,6 @@ btnNew.addEventListener('click', function () {
   document
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--winner');
+    document.querySelector(`.poop--${activePlayer}`).classList.remove('grow');
+    document.querySelector(`.happy--${activePlayer}`).classList.remove('grow1');
 });
